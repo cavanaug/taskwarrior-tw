@@ -55,7 +55,7 @@ CmdConfig::CmdConfig() {
 ////////////////////////////////////////////////////////////////////////////////
 bool CmdConfig::setConfigVariable(const std::string& name, const std::string& value,
                                   bool confirmation /* = false */) {
-  // Read .taskrc (or equivalent)
+  // Read .taskwarriorrc (or equivalent)
   std::vector<std::string> contents;
   File::read(Context::getContext().config.file(), contents);
 
@@ -105,7 +105,7 @@ bool CmdConfig::setConfigVariable(const std::string& name, const std::string& va
 
 ////////////////////////////////////////////////////////////////////////////////
 int CmdConfig::unsetConfigVariable(const std::string& name, bool confirmation /* = false */) {
-  // Read .taskrc (or equivalent)
+  // Read .taskwarriorrc (or equivalent)
   std::vector<std::string> contents;
   File::read(Context::getContext().config.file(), contents);
 
@@ -195,7 +195,7 @@ int CmdConfig::execute(std::string& output) {
         if (!found) throw format("No entry named '{1}' found.", name);
       }
 
-      // Show feedback depending on whether .taskrc has been rewritten
+      // Show feedback depending on whether .taskwarriorrc has been rewritten
       if (change) {
         out << format("Config file {1} modified.", Context::getContext().config.file()) << '\n';
       } else

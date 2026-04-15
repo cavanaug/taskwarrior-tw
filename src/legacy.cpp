@@ -109,7 +109,7 @@ std::string legacyCheckForDeprecatedVariables() {
 
   std::stringstream out;
   if (deprecated.size()) {
-    out << "Your .taskrc file contains variables that are deprecated:\n";
+    out << "Your .taskwarriorrc file contains variables that are deprecated:\n";
 
     for (const auto& dep : deprecated) out << "  " << dep << "\n";
 
@@ -137,7 +137,7 @@ std::string legacyCheckForDeprecatedColumns() {
   out << "\n";
 
   if (deprecated.size()) {
-    out << "Your .taskrc file contains reports with deprecated columns.  Please check for "
+    out << "Your .taskwarriorrc file contains reports with deprecated columns.  Please check for "
            "entry_time, start_time or end_time in:\n";
 
     for (const auto& dep : deprecated)

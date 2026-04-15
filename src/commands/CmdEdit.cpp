@@ -631,7 +631,7 @@ CmdEdit::editResult CmdEdit::editFile(Task& task) {
   auto before_orig = before;
   File::write(file.str(), before);
 
-  // Determine correct editor: .taskrc:editor > $VISUAL > $EDITOR > vi
+  // Determine correct editor: .taskwarriorrc:editor > $VISUAL > $EDITOR > vi
   auto editor = Context::getContext().config.get("editor");
   char* peditor = getenv("VISUAL");
   if (editor == "" && peditor) editor = std::string(peditor);

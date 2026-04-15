@@ -318,7 +318,7 @@ int CmdShow::execute(std::string& output) {
       << (view.rows() == 0 ? "\n\n" : "\n");
 
   if (issue_warning) {
-    out << "Some of your .taskrc variables differ from the default values.\n";
+    out << "Some of your .taskwarriorrc variables differ from the default values.\n";
 
     if (Context::getContext().color() && warning.nontrivial())
       out << "  " << format(STRING_CMD_SHOW_DIFFER_COLOR, warning.colorize("color")) << "\n\n";
@@ -326,7 +326,7 @@ int CmdShow::execute(std::string& output) {
 
   // Display the unrecognized variables.
   if (issue_error) {
-    out << "Your .taskrc file contains these unrecognized variables:\n";
+    out << "Your .taskwarriorrc file contains these unrecognized variables:\n";
 
     for (auto& i : unrecognized) out << "  " << i << '\n';
 
@@ -356,13 +356,13 @@ int CmdShow::execute(std::string& output) {
   // to ensure everything is properly installed.
 
   if (Context::getContext().config.size() == 0) {
-    out << "Configuration error: .taskrc contains no entries.\n";
+    out << "Configuration error: .taskwarriorrc contains no entries.\n";
     rc = 1;
   } else {
     Directory location(Context::getContext().config.get("data.location"));
 
     if (location._data == "")
-      out << "Configuration error: data.location not specified in .taskrc file.\n";
+      out << "Configuration error: data.location not specified in .taskwarriorrc file.\n";
 
     if (!location.exists())
       out << "Configuration error: data.location contains a directory name that doesn't exist, or "

@@ -515,10 +515,10 @@ int Context::initialize(int argc, const char** argv) {
     ////////////////////////////////////////////////////////////////////////////
     //
     // [1] Load the correct config file.
-    //     - Default to ~/.taskrc (ctor).
-    //     - If no ~/.taskrc, use $XDG_CONFIG_HOME/task/taskrc if exists, or
-    //       ~/.config/task/taskrc if $XDG_CONFIG_HOME is unset
-    //     - Allow $TASKRC override.
+    //     - Default to ~/.taskwarriorrc (ctor).
+    //     - If no ~/.taskwarriorrc, use $XDG_CONFIG_HOME/taskwarrior/taskwarriorrc if exists, or
+    //       ~/.config/taskwarrior/taskwarriorrc if $XDG_CONFIG_HOME is unset
+    //     - Allow $TASKWARRIORRC override.
     //     - Allow command line override rc:<file>
     //     - Load resultant file.
     //     - Apply command line overrides to the config.
@@ -542,13 +542,13 @@ int Context::initialize(int argc, const char** argv) {
       if (xdg_config_home.back() == '/') xdg_config_home.pop_back();
 
       // https://github.com/GothenburgBitFactory/libshared/issues/32
-      std::string rcfile_path = format("{1}/task/taskrc", xdg_config_home);
+      std::string rcfile_path = format("{1}/taskwarrior/taskwarriorrc", xdg_config_home);
 
       File maybe_rc_file = File(rcfile_path);
       if (maybe_rc_file.exists()) rc_file = maybe_rc_file;
     }
 
-    char* override = getenv("TASKRC");
+    char* override = getenv("TASKWARRIORRC");
     if (override) {
       rc_file = File(override);
       taskrc_overridden = true;
@@ -567,13 +567,13 @@ int Context::initialize(int argc, const char** argv) {
     CLI2::applyOverrides(argc, argv);
 
     if (taskrc_overridden && verbose("override"))
-      header(format("TASKRC override: {1}", rc_file._data));
+      header(format("TASKWARRIORRC override: {1}", rc_file._data));
 
     ////////////////////////////////////////////////////////////////////////////
     //
     // [2] Locate the data directory.
     //     - Default to ~/.task (ctor).
-    //     - Allow $TASKDATA override.
+    //     - Allow $TASKWARRIORDATA override.
     //     - Allow command line override rc.data.location:<dir>
     //     - Inform TDB2 where to find data.
     //     - Create the rc_file and data_dir, if necessary.
@@ -582,7 +582,7 @@ int Context::initialize(int argc, const char** argv) {
 
     bool taskdata_overridden = false;
 
-    override = getenv("TASKDATA");
+    override = getenv("TASKWARRIORDATA");
     if (override) {
       data_dir = Directory(override);
       config.set("data.location", data_dir._data);
@@ -592,7 +592,7 @@ int Context::initialize(int argc, const char** argv) {
     taskdata_overridden = CLI2::getDataLocation(argc, argv, data_dir) || taskdata_overridden;
 
     if (taskdata_overridden && verbose("override"))
-      header(format("TASKDATA override: {1}", data_dir._data));
+      header(format("TASKWARRIORDATA override: {1}", data_dir._data));
 
     createDefaultConfig();
 
@@ -1192,10 +1192,10 @@ void Context::createDefaultConfig() {
              << "data.location=" << data_dir._original << "\n"
              << "news.version=" << Version::Current() << "\n"
              << "\n# To use the default location of the XDG directories,\n"
-             << "# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and update "
+             << "# move this configuration file from ~/.taskwarriorrc to ~/.config/taskwarrior/taskwarriorrc and update "
                 "location config as follows:\n"
-             << "\n#data.location=~/.local/share/task\n"
-             << "#hooks.location=~/.config/task/hooks\n"
+             << "\n#data.location=~/.local/share/taskwarrior\n"
+             << "#hooks.location=~/.config/taskwarrior/hooks\n"
              << "\n# Color theme (uncomment one to use)\n"
              << "#include light-16.theme\n"
              << "#include light-256.theme\n"

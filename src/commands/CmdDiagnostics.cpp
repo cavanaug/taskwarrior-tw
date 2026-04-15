@@ -128,7 +128,7 @@ int CmdDiagnostics::execute(std::string& output) {
 #endif
       << "\n\n";
 
-  // Config: .taskrc found, readable, writable
+  // Config: .taskwarriorrc found, readable, writable
   File rcFile(Context::getContext().config.file());
   out << bold.colorize("Configuration") << '\n'
       << "       File: " << rcFile._data << ' ' << (rcFile.exists() ? "(found)" : "(missing)")
@@ -141,11 +141,11 @@ int CmdDiagnostics::execute(std::string& output) {
       << ", " << (location.is_directory() ? "dir" : "?") << ", mode " << std::setbase(8)
       << location.mode() << '\n';
 
-  char* env = getenv("TASKRC");
-  if (env) out << "     TASKRC: " << env << '\n';
+  char* env = getenv("TASKWARRIORRC");
+  if (env) out << "     TASKWARRIORRC: " << env << '\n';
 
-  env = getenv("TASKDATA");
-  if (env) out << "   TASKDATA: " << env << '\n';
+  env = getenv("TASKWARRIORDATA");
+  if (env) out << "   TASKWARRIORDATA: " << env << '\n';
 
   out << "         GC: " << (Context::getContext().config.getBoolean("gc") ? "Enabled" : "Disabled")
       << '\n';

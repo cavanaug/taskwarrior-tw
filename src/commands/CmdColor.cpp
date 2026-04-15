@@ -226,7 +226,7 @@ int CmdColor::execute(std::string& output) {
           << '\n';
     }
   } else {
-    out << "Color is currently turned off in your .taskrc file.  To enable color, remove the line "
+    out << "Color is currently turned off in your .taskwarriorrc file.  To enable color, remove the line "
            "'color=off', or change the 'off' to 'on'.\n";
     rc = 1;
   }

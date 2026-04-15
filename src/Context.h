@@ -91,8 +91,8 @@ class Context {
  public:
   CLI2 cli2{};
   std::string home_dir{};
-  File rc_file{"~/.taskrc"};
-  Path data_dir{"~/.task"};
+  File rc_file{"~/.taskwarriorrc"};
+  Path data_dir{"~/.taskwarrior"};
   Configuration config{};
   TDB2 tdb2{};
   Hooks hooks{};

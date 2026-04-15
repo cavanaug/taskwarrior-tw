@@ -167,7 +167,7 @@ std::vector<std::string> CmdContext::getContexts() {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Defines a new user-provided context.
-//  - The context definition is written into .taskrc as a context.<name> variable.
+//  - The context definition is written into .taskwarriorrc as a context.<name> variable.
 //  - Deletion of the context requires confirmation if rc.confirmation=yes.
 //
 // Returns: 0 if the addition of the config variable was successful, 1 otherwise
