@@ -3,7 +3,7 @@
 
 
 The task data files (pending.data, completed.data and undo.data),
-configuration file (.taskrc) as well as edits made via commands like "task 1
+configuration file (.taskwarriorrc) as well as edits made via commands like "tw 1
 edit" can be color-highlighted if you happen to use VIM as your preferred text
 editor.  Eventually this will happen automatically in newer versions of VIM,
 but for now you have to do a little bit of file shuffling.
@@ -36,18 +36,18 @@ that you have:
     ~/.vim/syntax/taskedit.vim
     ~/.vim/syntax/taskrc.vim
 
-The source of these files varies depending on how you installed task.  If you
-installed task via a regular package (rpm or deb) you can find these files in
-/usr/share/doc/task-VERSION/scripts/vim/.  If you built task yourself from the
+The source of these files varies depending on how you installed tw.  If you
+installed tw via a regular package (rpm or deb) you can find these files in
+/usr/share/doc/tw-VERSION/scripts/vim/.  If you built tw yourself from the
 tarball (using the default configure options), these will be in
-/usr/local/share/doc/task-VERSION/scripts/vim/ instead.  So you should be able
+/usr/local/share/doc/tw-VERSION/scripts/vim/ instead.  So you should be able
 to do one of the following:
 
-    cp -av /usr/share/doc/task-VERSION/scripts/vim/* ~/.vim/
+    cp -av /usr/share/doc/tw-VERSION/scripts/vim/* ~/.vim/
 
 or
 
-    cp -av /usr/local/share/doc/task-VERSION/scripts/vim/* ~/.vim/
+    cp -av /usr/local/share/doc/tw-VERSION/scripts/vim/* ~/.vim/
 
 You should then be ready to go.
 ---

@@ -15,10 +15,10 @@ au BufRead,BufNewFile {pending,completed,undo}.data	set filetype=taskdata
 au BufRead,BufNewFile backlog.data	set filetype=javascript
 
 " Taskwarrior configuration file
-au BufRead,BufNewFile .taskrc				set filetype=taskrc
-au BufRead,BufNewFile taskrc				set filetype=taskrc
+au BufRead,BufNewFile .taskwarriorrc				set filetype=taskrc
+au BufRead,BufNewFile taskwarriorrc				set filetype=taskrc
 
-" Taskwarrior handling of 'task 42 edit'
+" Taskwarrior handling of 'tw 42 edit'
 au BufRead,BufNewFile *.task				set filetype=taskedit
 
 " vim:noexpandtab
