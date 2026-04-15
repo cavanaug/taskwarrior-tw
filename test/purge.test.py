@@ -40,7 +40,7 @@ from basetest.utils import mkstemp
 class TestAutoPurge(TestCase):
     def setUp(self):
         self.t = Task()
-        # Set up local sync within the TASKDATA directory, so that it will be
+        # Set up local sync within the TASKWARRIORDATA directory, so that it will be
         # deleted properly.
         self.t.config("sync.local.server_dir", self.t.datadir)
 

@@ -146,7 +146,7 @@ class TestProject(TestBashCompletionBase):
     def test_project(self):
         """project: should be expanded and dependent on abbreviation minimum"""
         with tasksh(self.t):
-            # TASKRC=test.rc is passed by the test suite by default
+            # TASKWARRIORRC=test.rc is passed by the test suite by default
             code, out, err = self.t("ad to")
             # no taskrc override message should be shown
             self.assertNotIn("override", out)
