@@ -6,7 +6,7 @@
 # operation system bug tracker.
 #
 # As a workaround you can copy this script to
-# ~/.config/fish/completions/task.fish, and open a new shell.
+# ~/.config/fish/completions/tw.fish, and open a new shell.
 #
 # Objects completed:
 #  * Commands
@@ -22,15 +22,15 @@
 # # Warning: This often creates a list of suggestions which spans several pages,
 # # and it usually pushes some of the commands and attributes to the end of the
 # # list.
-# set -g task_complete_task yes
+# set -g tw_complete_task yes
 #
 # # Tab-completion of task IDs outside of the "depends" attribute.
 # # Warning: This often creates a list of suggestions which spans several pages,
 # # and it pushes all commands and attributes to the end of the list.
-# set -g task_complete_id yes
+# set -g tw_complete_id yes
 #
 # # Attribute modifiers (DEPRECATED since 2.4.0)
-# set -g task_complete_attribute_modifiers yes
+# set -g tw_complete_attribute_modifiers yes
 #
 #
 # Copyright 2014 - 2021, Roman Inflianskas <infroma@gmail.com>
@@ -76,7 +76,7 @@ end
 
 function __fish.task.zsh
   set -q argv[2]; and set task_argv $argv[2..-1]
-  task _zsh$argv[1] $task_argv | sed 's/:/	/'
+  tw _zsh$argv[1] $task_argv | sed 's/:/	/'
 end
 
 
@@ -160,7 +160,7 @@ end
 
 function __fish.task.list.attr_name
   # # BUG: doesn't support file completion
-  for attr in (task _columns)
+  for attr in (tw _columns)
     if set -l idx (contains -i -- $attr $__fish_task_static_attr_desc_keys)
       # use builtin friendly description
       echo -e "$attr:\tattribute:$__fish_task_static_attr_desc_vals[$idx]"
@@ -196,7 +196,7 @@ function __fish.task.list.attr_value_by_name
       __fish.task.combos_simple $attr (__fish.task.list.dates)
     # case 'description' 'project'
     case '*'
-      if [ "$task_complete_attribute_modifiers" = 'yes' ]; and echo (commandline -ct) | grep -q '\.'
+      if [ "$tw_complete_attribute_modifiers" = 'yes' ]; and echo (commandline -ct) | grep -q '\.'
         __fish.task.combos_with_mods $attr (__fish.task.list $attr)
       else
         __fish.task.combos_simple $attr (__fish.task.list $attr)
@@ -218,11 +218,11 @@ function __fish.task.list.command_mods
 end
 
 function __fish.task.list.config
-  task _config
+  tw _config
 end
 
 function __fish.task.list.context
-  task _context
+  tw _context
 end
 
 function __fish.task.list.depends
@@ -236,7 +236,7 @@ end
 function __fish.task.list.id
   set show_type $argv[1]
   if test -z $show_type
-    task _ids
+    tw _ids
   else if [ $show_type = 'with_description' ]
     __fish.task.zsh ids
   end
@@ -282,11 +282,11 @@ function __fish.task.list.priority
 end
 
 function __fish.task.list.project
-  task _projects
+  tw _projects
 end
 
 function __fish.task.list.rc
-  task _config
+  tw _config
 end
 
 function __fish.task.list.status
@@ -294,7 +294,7 @@ function __fish.task.list.status
 end
 
 function __fish.task.list.tag
-  set -l tags (task _tags)
+  set -l tags (tw _tags)
   printf '+%s\n' $tags
   # compatibility, older fish won't allow - in format
   printf ' %s\n' $tags | tr ' ' '-'
@@ -349,7 +349,7 @@ function __fish.task.complete
   set what $argv
   set list_command "__fish.task.list $what"
   set check_function "__fish.task.need_to_complete $what"
-  complete -c task -u -k -f -n $check_function -a "(eval $list_command)"
+  complete -c tw -u -k -f -n $check_function -a "(eval $list_command)"
 end
 
 # static variables that won't changes even when taskw's data is modified
@@ -447,13 +447,14 @@ __fish.task.complete tag
 # The following are static so we will expand it when initialised. Display underscore (internal) commands last
 set -l __fish_task_static_commands_underscore (echo -e $__fish_task_static_commands_with_desc | grep '^[_]' | string collect | string escape)
 set -l __fish_task_static_commands_normal (echo -e $__fish_task_static_commands_with_desc | grep '^[^_]' | string collect | string escape)
-complete -c task -u -k -f -n "__fish.task.before_command" -a "$__fish_task_static_commands_underscore"
-complete -c task -u -k -f -n "__fish.task.before_command" -a "$__fish_task_static_commands_normal"
+complete -c tw -u -k -f -n "__fish.task.before_command" -a "$__fish_task_static_commands_underscore"
+complete -c tw -u -k -f -n "__fish.task.before_command" -a "$__fish_task_static_commands_normal"
 
-if [ "$task_complete_task" = 'yes' ]
+if [ "$tw_complete_task" = 'yes' ]
     __fish.task.complete task
 end
 
-if [ "$task_complete_id" = 'yes' ]
+if [ "$tw_complete_id" = 'yes' ]
     __fish.task.complete id with_description
 end
+d

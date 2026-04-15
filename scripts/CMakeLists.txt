@@ -11,9 +11,9 @@ endif()
 
 install (DIRECTORY bash vim hooks
          DESTINATION ${TASK_DOCDIR}/scripts)
-install (FILES fish/task.fish
+install (FILES fish/tw.fish
          DESTINATION ${FISH_COMPLETIONSDIR})
-install (FILES zsh/_task
+install (FILES zsh/_tw
          DESTINATION share/zsh/site-functions)
 install (DIRECTORY add-ons
          DESTINATION ${TASK_DOCDIR}/scripts

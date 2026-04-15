@@ -50,7 +50,7 @@
 #
 ################################################################################
 #the following variable is substituted for by ../../test/bash_completion.t
-taskbin='task'
+taskbin='tw'
 taskrc=''
 taskcommand="rc.verbose:nothing rc.confirmation:no rc.hooks:off ${taskrc}"
 
