@@ -43,10 +43,10 @@ class TestCustomConfig(TestCase):
         self.t.config("imnotrecognized", "kai")
 
         self.DIFFER_MSG = (
-            "Some of your .taskrc variables differ from the " "default values."
+            "Some of your .taskwarriorrc variables differ from the " "default values."
         )
         self.NOT_RECOG_MSG = (
-            "Your .taskrc file contains these unrecognized " "variables:"
+            "Your .taskwarriorrc file contains these unrecognized " "variables:"
         )
 
     def test_show_alias(self):

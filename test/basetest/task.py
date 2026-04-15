@@ -79,10 +79,10 @@ class Task(object):
         # Copy all env variables to avoid clashing subprocess environments
         self.env = os.environ.copy()
 
-        # Make sure no TASKDDATA is isolated
-        self.env["TASKDATA"] = self.datadir
-        # As well as TASKRC
-        self.env["TASKRC"] = self.taskrc
+        # Make sure no TASKWARRIORDATA is isolated
+        self.env["TASKWARRIORDATA"] = self.datadir
+        # As well as TASKWARRIORRC
+        self.env["TASKWARRIORRC"] = self.taskrc
 
     def config(self, var, value):
         """Run setup `var` as `value` in taskd config"""

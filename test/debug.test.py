@@ -49,7 +49,7 @@ class TestDebugMode(TestCase):
         # Debug
         self.assertIn("Config::load", err)
         self.assertIn("Filtered 2 tasks --> 2 tasks [pending only]", err)
-        self.assertIn("Perf task", err)
+        self.assertIn("Perf tw", err)
 
     def test_debug_parser_output(self):
         """Verify debug parser mode generates interesting output"""
@@ -58,7 +58,7 @@ class TestDebugMode(TestCase):
         # Debug
         self.assertIn("Config::load", err)
         self.assertIn("Filtered 2 tasks --> 2 tasks [pending only]", err)
-        self.assertIn("Perf task", err)
+        self.assertIn("Perf tw", err)
 
         # Parser
         self.assertIn("CLI2::prepareFilter", err)
@@ -70,7 +70,7 @@ class TestDebugMode(TestCase):
         # Debug
         self.assertIn("Config::load", err)
         self.assertIn("Filtered 2 tasks --> 2 tasks [pending only]", err)
-        self.assertIn("Perf task", err)
+        self.assertIn("Perf tw", err)
 
         # Parser
         self.assertIn("CLI2::prepareFilter", err)
@@ -83,7 +83,7 @@ class TestDebugMode(TestCase):
         # Debug
         self.assertIn("Config::load", err)
         self.assertIn("Filtered 2 tasks --> 2 tasks [pending only]", err)
-        self.assertIn("Perf task", err)
+        self.assertIn("Perf tw", err)
 
 
 if __name__ == "__main__":

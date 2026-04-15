@@ -110,12 +110,12 @@ class TestVerbosity(TestCase):
         """Verbosity header"""
 
         code, out, err = self.t("rc.verbose:override ls")
-        self.assertNotIn("TASKRC override:", err)
-        self.assertNotIn("TASKDATA override:", err)
+        self.assertNotIn("TASKWARRIORRC override:", err)
+        self.assertNotIn("TASKWARRIORDATA override:", err)
 
         code, out, err = self.t("rc.verbose:header,override ls")
-        self.assertIn("TASKRC override:", err)
-        self.assertIn("TASKDATA override:", err)
+        self.assertIn("TASKWARRIORRC override:", err)
+        self.assertIn("TASKWARRIORDATA override:", err)
 
     def test_verbosity_project(self):
         """Verbosity project"""

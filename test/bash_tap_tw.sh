@@ -33,7 +33,7 @@ function find_task_binary {
     # $bashtap_org_pwd is set in bash_tap.sh. It is the directory the parent script is
     # run from. Check for the task binary relative to that directory.
     # Do not use the system "task" if no local one is found, error out instead.
-    for t in "${bashtap_org_pwd}/task" "${bashtap_org_pwd}/src/task" "${bashtap_org_pwd}/../task" "${bashtap_org_pwd}/../src/task" "${bashtap_org_pwd}/../build/src/task"; do
+    for t in "${bashtap_org_pwd}/tw" "${bashtap_org_pwd}/src/tw" "${bashtap_org_pwd}/../tw" "${bashtap_org_pwd}/../src/tw" "${bashtap_org_pwd}/../build/src/tw"; do
         if [ -f "$t" ] && [ -x "$t" ]; then
             t_abs=$(bashtap_get_absolute_path "$t")
             eval "function task { '${t_abs}' rc:taskrc \"\$@\"; }"
@@ -62,3 +62,4 @@ function bashtap_setup {
 
 # Include the base script that does the actual work.
 source bash_tap.sh
+urce bash_tap.sh

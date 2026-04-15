@@ -110,25 +110,25 @@ class TestBug956(TestCase):
         """956: Verify 'ids' does not print a header"""
         code, out, err = self.t("rc.verbose:nothing ids")
         self.assertIn("1\n", out)
-        self.assertNotIn("TASKRC", out)
+        self.assertNotIn("TASKWARRIORRC", out)
 
     def test_ids_helper_header(self):
         """956: Verify '_ids' does not print a header"""
         code, out, err = self.t("rc.verbose:nothing _ids")
         self.assertIn("1\n", out)
-        self.assertNotIn("TASKRC", out)
+        self.assertNotIn("TASKWARRIORRC", out)
 
     def test_uuids_header(self):
         """956: Verify 'uuids' does not print a header"""
         code, out, err = self.t("rc.verbose:nothing uuids")
         self.assertRegex(out, "[0-9a-f-]*\n")
-        self.assertNotIn("TASKRC", out)
+        self.assertNotIn("TASKWARRIORRC", out)
 
     def test_uuids_helper_header(self):
         """956: Verify '_uuids' does not print a header"""
         code, out, err = self.t("rc.verbose:nothing _uuids")
         self.assertRegex(out, "[0-9a-f-]*\n")
-        self.assertNotIn("TASKRC", out)
+        self.assertNotIn("TASKWARRIORRC", out)
 
 
 if __name__ == "__main__":

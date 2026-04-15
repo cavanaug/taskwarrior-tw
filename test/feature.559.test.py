@@ -48,8 +48,8 @@ class TestFeature559(TestCase):
         # effect.
         # In order to test rc.exit.on.missing.db we must unset the env vars and
         # point taskwarrior to the configuration files via rc:override.
-        del self.t.env["TASKDATA"]
-        del self.t.env["TASKRC"]
+        del self.t.env["TASKWARRIORDATA"]
+        del self.t.env["TASKWARRIORRC"]
 
         # Inject rc:taskrc before any command used in this client
         # NOTE This will break if self.t.faketime() is used

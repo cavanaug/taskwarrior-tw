@@ -36,14 +36,14 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from basetest import Task, TestCase
 from basetest.utils import SOURCE_DIR
 
-TASKSH = os.path.abspath(os.path.join(SOURCE_DIR, "scripts/bash/task.sh"))
+TASKSH = os.path.abspath(os.path.join(SOURCE_DIR, "scripts/bash/tw.sh"))
 
 
 @contextmanager
 def tasksh(t):
     cmd_backup = t._command
 
-    # Use "bash task.sh task" as command
+    # Use "bash tw.sh tw" as command
     t._command = ["bash", t.tasksh_script, t._command[0]]
     yield
 
@@ -52,7 +52,7 @@ def tasksh(t):
 
 
 def prepare_tasksh(t):
-    """Prepare task.sh to be used in tests"""
+    """Prepare tw.sh to be used in tests"""
     tasksh = []
 
     # Ensure the task binary used is the same configured for the test
@@ -60,7 +60,7 @@ def prepare_tasksh(t):
         for line in fh:
             line = line.rstrip()
 
-            if line == "taskbin='task'":
+            if line == "taskbin='tw'":
                 line = "taskbin='{0}'".format(t.taskw)
             if line == "taskrc=''":
                 line = "taskrc='rc:{0}'".format(t.taskrc)
@@ -89,7 +89,7 @@ class TestBashCompletionBase(TestCase):
         self.t.config("alias.samplealias", "long")
         self.t.config("abbreviation.minimum", "5")
 
-        self.t.tasksh_script = os.path.join(self.t.datadir, "task.sh")
+        self.t.tasksh_script = os.path.join(self.t.datadir, "tw.sh")
 
         with open(self.t.tasksh_script, "w") as tasksh:
             tasksh.write(prepare_tasksh(self.t))

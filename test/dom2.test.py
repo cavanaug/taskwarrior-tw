@@ -190,13 +190,13 @@ class TestDOM(TestCase):
         """DOM tw.program"""
         code, out, err = self.t("_get tw.program")
         self.assertEqual(code, 0)
-        self.assertIn("task", out)
+        self.assertIn("tw", out)
 
     def test_dom_tw_args(self):
         """DOM tw.args"""
         code, out, err = self.t("_get tw.args")
         self.assertEqual(code, 0)
-        self.assertIn("task _get tw.args", out)
+        self.assertIn("tw _get tw.args", out)
 
     def test_dom_tw_width(self):
         """DOM tw.width"""
@@ -220,13 +220,13 @@ class TestDOM(TestCase):
         """DOM context.program"""
         code, out, err = self.t("_get context.program")
         self.assertEqual(code, 0)
-        self.assertIn("task", out)
+        self.assertIn("tw", out)
 
     def test_dom_context_args(self):
         """DOM context.args"""
         code, out, err = self.t("_get context.args")
         self.assertEqual(code, 0)
-        self.assertIn("task _get context.args", out)
+        self.assertIn("tw _get context.args", out)
 
     def test_dom_context_width(self):
         """DOM context.width"""

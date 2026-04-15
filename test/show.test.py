@@ -70,7 +70,7 @@ class TestShowCommand(TestCase):
         self.t.config("foo", "bar")
         code, out, err = self.t("show")
         self.assertIn(
-            "Your .taskrc file contains these unrecognized variables:\n  foo", out
+            "Your .taskwarriorrc file contains these unrecognized variables:\n  foo", out
         )
 
 

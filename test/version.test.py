@@ -71,7 +71,7 @@ class TestVersion(TestCase):
         """version command outputs expected version and license"""
         code, out, err = self.t("version")
 
-        expected = "task {0}".format(self.slurp())
+        expected = "tw {0}".format(self.slurp())
         self.assertIn(expected, out)
         self.assertIn("MIT license", out)
         self.assertIn("https://taskwarrior.org", out)

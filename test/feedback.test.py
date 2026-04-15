@@ -50,22 +50,22 @@ class TestFeature1013(TestCase):
     def test_headers(self):
         """Verify that headers are sent to standard error"""
         code, out, err = self.t.runError("list")
-        self.assertNotIn("TASKRC override:", out)
-        self.assertIn("TASKRC override:", err)
+        self.assertNotIn("TASKWARRIORRC override:", out)
+        self.assertIn("TASKWARRIORRC override:", err)
 
     def test_footnotes(self):
         """Verify that footnotes are sent to standard error"""
         self.t("add foo")
         code, out, err = self.t("list rc.foo:bar")
-        self.assertNotIn("Perf task", out)
+        self.assertNotIn("Perf tw", out)
         self.assertNotIn("Configuration override rc.foo:bar", out)
         self.assertIn("Configuration override rc.foo:bar", err)
 
     def test_debug(self):
         """Verify that debug messages are sent to standard error"""
         code, out, err = self.t.runError("list rc.debug:on")
-        self.assertNotIn("Perf task", out)
-        self.assertIn("Perf task", err)
+        self.assertNotIn("Perf tw", out)
+        self.assertIn("Perf tw", err)
 
 
 if __name__ == "__main__":
