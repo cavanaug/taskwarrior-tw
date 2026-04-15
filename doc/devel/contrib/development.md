@@ -28,7 +28,7 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build
 ```
 Other possible build types can be `Release` and `Debug`.
-This will build several executables, but the one you want is probably `src/task`, located in the `build` directory.
+This will build several executables, but the one you want is probably `src/tw`, located in the `build` directory.
 When you make changes, just run the last line again.
 
 ### Building a specific target

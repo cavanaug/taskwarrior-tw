@@ -36,7 +36,7 @@ RUN git clean -dfx && \
 FROM base AS runner
 
 # Install Taskwarrior
-COPY --from=builder /root/code/build/src/task /usr/local/bin
+COPY --from=builder /root/code/build/src/tw /usr/local/bin
 
 # Initialize Taskwarrior
-RUN ( echo "yes" | task ) || true
+RUN ( echo "yes" | tw ) || true
