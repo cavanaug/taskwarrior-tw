@@ -1,8 +1,8 @@
-.TH task-sync 5 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
+.TH tw-sync 5 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
 
 .SH NAME
-task-sync \- A discussion and tutorial for the various
-.BR task (1)
+tw-sync \- A discussion and tutorial for the various
+.BR tw (1)
 data synchronization capabilities.
 
 .SH INTRODUCTION
@@ -26,14 +26,14 @@ is run, it is no longer possible to undo previous operations.
 .SS Adding a Replica
 
 To add a new replica, configure a new, empty replica identically to
-the existing replica, and run `task sync`.
+the existing replica, and run `tw sync`.
 
 .SS When to Synchronize
 
 For synchronization to a server, a common solution is to run
 
 .nf
-    $ task sync
+    $ tw sync
 .fi
 
 periodically, such as via
@@ -52,7 +52,7 @@ decrypt your tasks. This can be any secret string, and must match for all
 replicas sharing tasks.
 
 .nf
-    $ task config sync.encryption_secret <encryption_secret>
+    $ tw config sync.encryption_secret <encryption_secret>
 .fi
 
 Tools such as
@@ -72,13 +72,13 @@ information from the server administrator:
 Configure Taskwarrior with these details:
 
 .nf
-    $ task config sync.server.url               <url>
-    $ task config sync.server.client_id         <client_id>
+    $ tw config sync.server.url               <url>
+    $ tw config sync.server.client_id         <client_id>
 .fi
 
 Note that the URL must include the scheme, such as 'http://' or 'https://'.
 
-    $ task config sync.server.origin            <origin>
+    $ tw config sync.server.origin            <origin>
 
 Is a deprecated synonym for "sync.server.url".
 
@@ -98,7 +98,7 @@ Authenticate to the project with:
 Then configure Taskwarrior with:
 
 .nf
-    $ task config sync.gcp.bucket               <bucket-name>
+    $ tw config sync.gcp.bucket               <bucket-name>
 .fi
 
 However you can bring your own service account credentials if your
@@ -135,8 +135,8 @@ Click on "ADD KEY" to create and download a new key (a JSON key).
 Then configure Taskwarrior with:
 
 .nf
-    $ task config sync.gcp.bucket               <bucket-name>
-    $ task config sync.gcp.credential_path      <absolute-path-to-downloaded-credentials>
+    $ tw config sync.gcp.bucket               <bucket-name>
+    $ tw config sync.gcp.credential_path      <absolute-path-to-downloaded-credentials>
 .fi
 
 .SS Amazon Web Services
@@ -187,10 +187,10 @@ At this point, you can choose how to provide those credentials to Taskwarrior.
 The simplest is to include them in the Taskwarrior configuration:
 
 .nf
-    $ task config sync.aws.region              <region>
-    $ task config sync.aws.bucket              <bucket-name>
-    $ task config sync.aws.access_key_id       <access-key-id>
-    $ task config sync.aws.secret_access_key   <secret-access-key>
+    $ tw config sync.aws.region              <region>
+    $ tw config sync.aws.bucket              <bucket-name>
+    $ tw config sync.aws.access_key_id       <access-key-id>
+    $ tw config sync.aws.secret_access_key   <secret-access-key>
 .fi
 
 Alternatively, you can set up an AWS CLI profile, using a profile name of your
@@ -204,18 +204,18 @@ Enter the access key ID and secret access key. The default region and format
 are not important. Then configure Taskwarrior with:
 
 .nf
-    $ task config sync.aws.region              <region>
-    $ task config sync.aws.bucket              <bucket-name>
-    $ task config sync.aws.profile             taskwarrior-creds
+    $ tw config sync.aws.region              <region>
+    $ tw config sync.aws.bucket              <bucket-name>
+    $ tw config sync.aws.profile             taskwarrior-creds
 .fi
 
 To use AWS's default credential sources, such as environment variables, the
 default profile, or an instance profile, set
 
 .nf
-    $ task config sync.aws.region              <region>
-    $ task config sync.aws.bucket              <bucket-name>
-    $ task config sync.aws.default_credentials true
+    $ tw config sync.aws.region              <region>
+    $ tw config sync.aws.bucket              <bucket-name>
+    $ tw config sync.aws.default_credentials true
 .fi
 
 .SS Local Synchronization
@@ -225,7 +225,7 @@ space without setting up a remote server, it is possible to sync tasks locally.
 To configure local sync:
 
 .nf
-    $ task config sync.local.server_dir /path/to/sync
+    $ tw config sync.local.server_dir /path/to/sync
 .fi
 
 The default configuration is to sync to a database in the task directory
@@ -256,13 +256,13 @@ If you run multiple clients that sync to the same server, you will need to run
 this command on your primary client (the one you use most often):
 
 .nf
-    $ task config recurrence on
+    $ tw config recurrence on
 .fi
 
 And on the other clients, run:
 
 .nf
-    $ task config recurrence off
+    $ tw config recurrence off
 .fi
 
 This protects you against the effects of a sync/duplication bug.
@@ -283,7 +283,7 @@ Setup simply involves creating the directory and modifying your data.location
 configuration variable like this:
 
 .nf
-    $ task config data.location /path/to/shared/directory
+    $ tw config data.location /path/to/shared/directory
 .fi
 
 Strengths:
@@ -306,9 +306,9 @@ Taskwarrior is distributed under the MIT license. See
 https://www.opensource.org/licenses/mit-license.php for more information.
 
 .SH SEE ALSO
-.BR task(1),
-.BR taskrc(5),
-.BR task-color(5),
+.BR tw(1),
+.BR taskwarriorrc(5),
+.BR tw-color(5),
 
 For more information regarding Taskwarrior, see the following:
 

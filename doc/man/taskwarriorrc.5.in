@@ -1,42 +1,42 @@
-.TH taskrc 5 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
+.TH taskwarriorrc 5 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
 
 .SH NAME
-taskrc \- Configuration details for the task(1) command
+taskwarriorrc \- Configuration details for the tw(1) command
 
 .SH SYNOPSIS
-.B $HOME/.taskrc
+.B $HOME/.taskwarriorrc
 .br
-.B task rc:<directory-path>/.taskrc ...
+.B tw rc:<directory-path>/.taskwarriorrc ...
 .br
-.B TASKRC=<directory-path>/.taskrc task ...
+.B TASKWARRIORRC=<directory-path>/.taskwarriorrc tw ...
 .br
-.B XDG_CONFIG_HOME=<directory-path>/task/taskrc task ...
+.B XDG_CONFIG_HOME=<directory-path>/taskwarrior/taskwarriorrc tw ...
 
 .SH DESCRIPTION
 .B Taskwarrior
 obtains its configuration data from a file called
-.I .taskrc
+.I .taskwarriorrc
 \&. This file is normally located in the user's home directory:
 
 .nf
-    $HOME/.taskrc
+    $HOME/.taskwarriorrc
 .fi
 
 The default location can be overridden using the
 .I rc:
-attribute when running task:
+attribute when running tw:
 
 .nf
-    $ task rc:<directory-path>/.taskrc ...
+    $ tw rc:<directory-path>/.taskwarriorrc ...
 .fi
 
-or using the TASKRC environment variable:
+or using the TASKWARRIORRC environment variable:
 
 .nf
-    $ TASKRC=/tmp/.taskrc task ...
+    $ TASKWARRIORRC=/tmp/.taskwarriorrc tw ...
 .fi
 
-Additionally, if no ~/.taskrc exists, taskwarrior will check if the XDG_CONFIG_HOME environment variable is defined:
+Additionally, if no ~/.taskwarriorrc exists, taskwarrior will check if the XDG_CONFIG_HOME environment variable is defined:
 
 .nf
     $ XDG_CONFIG_HOME=~/.config task ...
@@ -44,26 +44,26 @@ Additionally, if no ~/.taskrc exists, taskwarrior will check if the XDG_CONFIG_H
 
 Individual options can be overridden by using the
 .I rc.<name>:
-attribute when running task:
+attribute when running tw:
 
 .nf
-    $ task rc.<name>:<value> ...
+    $ tw rc.<name>:<value> ...
 .fi
 
 or
 
 .nf
-    $ task rc.<name>=<value> ...
+    $ tw rc.<name>=<value> ...
 .fi
 
 If
 .B Taskwarrior
 is run without an existing configuration file it will ask if it should create a
 default, sample
-.I .taskrc
+.I .taskwarriorrc
 file in the user's home directory.
 
-The .taskrc file follows a very simple syntax defining name/value pairs:
+The .taskwarriorrc file follows a very simple syntax defining name/value pairs:
 
 .nf
     <name> = <value>
@@ -103,8 +103,8 @@ A comment consists of the character '#', and extends from the '#' to the end
 of the line. There is no way to comment a multi-line block. There may be
 blank lines.
 
-Almost every value has a default setting, and an empty .taskrc file is one
-that makes use of every default. The contents of the .taskrc file therefore
+Almost every value has a default setting, and an empty .taskwarriorrc file is one
+that makes use of every default. The contents of the .taskwarriorrc file therefore
 represent overrides of the default values. To remove a default value completely
 there must be an entry like this:
 
@@ -115,37 +115,37 @@ there must be an entry like this:
 This entry overrides the default value with a blank value.
 
 .SH EDITING
-You can edit your .taskrc file by hand if you wish, or you can use the 'config'
-command. To permanently set a value in your .taskrc file, use this command:
+You can edit your .taskwarriorrc file by hand if you wish, or you can use the 'config'
+command. To permanently set a value in your .taskwarriorrc file, use this command:
 
 .nf
-    $ task config nag "You have more urgent tasks."
+    $ tw config nag "You have more urgent tasks."
 .fi
 
 To delete an entry, use this command:
 
 .nf
-    $ task config nag
+    $ tw config nag
 .fi
 
 Taskwarrior will then use the default value. To explicitly set a value to
 blank, and therefore avoid using the default value, use this command:
 
 .nf
-    $ task config nag ""
+    $ tw config nag ""
 .fi
 
 Taskwarrior will also display all your settings with this command:
 
 .nf
-    $ task show
+    $ tw show
 .fi
 
 and in addition, will also perform a check of all the values in the file,
 warning you of anything it finds amiss.
 
 .SH NESTING CONFIGURATION FILES
-The .taskrc can include other files containing configuration settings by using the
+The .taskwarriorrc can include other files containing configuration settings by using the
 .B include
 statement:
 
@@ -156,7 +156,7 @@ statement:
 By using include files you can divide your main configuration file into several
 ones containing just the relevant configuration data like colors, etc.
 
-There are two excellent uses of includes in your .taskrc, shown here:
+There are two excellent uses of includes in your .taskwarriorrc, shown here:
 
 .nf
     include holidays.en-US.rc
@@ -171,22 +171,22 @@ reports and calendar.
 These environment variables override defaults, but not command-line arguments.
 
 .TP
-.B TASKDATA=~/.task
+.B TASKWARRIORDATA=~/.taskwarrior
 This overrides the default path for the Taskwarrior data.
 
 .TP
-.B TASKRC=~/.taskrc
+.B TASKWARRIORRC=~/.taskwarriorrc
 This overrides the default RC file.
 .RE
 
 This environment variable will be checked if
-.I ~/.taskrc
+.I ~/.taskwarriorrc
 doesn't exist
 
 .TP
 .B XDG_CONFIG_HOME=~/.config
 If set, taskwarrior will look for a
-.I $XDG_CONFIG_HOME/task/taskrc
+.I $XDG_CONFIG_HOME/taskwarrior/taskwarriorrc
 file
 
 .SH CONFIGURATION VARIABLES
@@ -195,19 +195,19 @@ Valid variable names and their default values are:
 .SS FILES
 
 .TP
-.B data.location=$HOME/.task
+.B data.location=$HOME/.taskwarrior
 This is a path to the directory containing all the Taskwarrior data. By
-default, it is set up to be ~/.task, for example: /home/paul/.task
+default, it is set up to be ~/.taskwarrior, for example: /home/paul/.taskwarrior
 
 Note that you can use the
 .B ~
 shell meta character, which will be properly expanded.
 
-Note that the TASKDATA environment variable overrides this setting.
+Note that the TASKWARRIORDATA environment variable overrides this setting.
 
 .TP
-.B hooks.location=$HOME/.task/hooks
-This is a path to the hook scripts directory. By default it is ~/.task/hooks.
+.B hooks.location=$HOME/.taskwarrior/hooks
+This is a path to the hook scripts directory. By default it is ~/.taskwarrior/hooks.
 
 .TP
 .B gc=1
@@ -216,7 +216,7 @@ Rebuilding requires read/write access to the database, so disabling `gc` may
 result in better performance.
 
 Note that this should be used in the form of a command line override (task
-rc.gc=0 ...), and not permanently used in the .taskrc file, as this
+rc.gc=0 ...), and not permanently used in the .taskwarriorrc file, as this
 significantly affects performance in the long term.
 
 .TP
@@ -232,8 +232,8 @@ is '1', but certain extensions and environments may need to disable hooks.
 
 .TP
 .B exit.on.missing.db=0
-When set to '1' causes the program to exit if the database (~/.task or
-rc.data.location or TASKDATA override) is missing. Default value is '0'.
+When set to '1' causes the program to exit if the database (~/.taskwarrior or
+rc.data.location or TASKWARRIORDATA override) is missing. Default value is '0'.
 
 .SS TERMINAL
 .TP
@@ -274,7 +274,7 @@ Hyphenates lines when wrapping breaks occur mid-word. Default value is '1'.
 .TP
 .B editor=vi
 Specifies which text editor you wish to use for when the
-.B task edit <ID>
+.B tw edit <ID>
 command is used. Taskwarrior will first look for this configuration variable. If
 found, it is used. Otherwise it will look for the $VISUAL or $EDITOR
 environment variables, before it defaults to using "vi".
@@ -301,12 +301,12 @@ control specific occasions when output is generated. This list may contain:
 
 .nf
     blank      Inserts extra blank lines in output, for clarity
-    header     Messages that appear before report output (this includes .taskrc/.task overrides and the "[task next]" message)
+    header     Messages that appear before report output (this includes .taskwarriorrc/.task overrides and the "[tw next]" message)
     footnote   Messages that appear after report output (mostly status messages and change descriptions)
     label      Column labels on tabular reports
     new-id     Provides feedback on any new task with IDs (and UUIDs for new tasks with ID 0, such as new completed tasks).
     new-uuid   Provides feedback on any new task with UUIDs. Overrides new-id. Useful for automation.
-    news       Reminds to read new release highlights until the user runs "task news".
+    news       Reminds to read new release highlights until the user runs "tw news".
     affected   Reports 'N tasks affected' and similar
     edit       Used the verbose template for the 'edit' command
     special    Feedback when applying special tags
@@ -456,13 +456,13 @@ to a TTY. For example, this command:
 
 .RS
 .RS
-$ task list > file
+$ tw list > file
 .RE
 
 will not use any color. To override this, use:
 
 .RS
-$ task rc._forcecolor=yes list > file
+$ tw rc._forcecolor=yes list > file
 .RE
 .RE
 
@@ -664,7 +664,7 @@ default value is "Sunday".
 
 .TP
 .B displayweeknumber=1
-Determines if week numbers are displayed when using the "task calendar" command.
+Determines if week numbers are displayed when using the "tw calendar" command.
 The week number is dependent on the day a week starts. The default value is
 "1".
 
@@ -675,7 +675,7 @@ considered due, and is colored accordingly. The default value is 7.
 
 .TP
 .B calendar.details=sparse
-If set to "full" running "task calendar" will display the details of tasks with
+If set to "full" running "tw calendar" will display the details of tasks with
 due dates that fall into the calendar period. The corresponding days will be
 color-coded in the calendar. If set to "sparse" only the corresponding days will
 be color coded and no details will be displayed. The displaying of due dates
@@ -685,7 +685,7 @@ is "sparse".
 .TP
 .B calendar.details.report=list
 The report to run when displaying the details of tasks with due dates when
-running the "task calendar" command. The default value is "list".
+running the "tw calendar" command. The default value is "list".
 
 .TP
 .B calendar.offset=0
@@ -699,7 +699,7 @@ value is "-1".
 
 .TP
 .B calendar.holidays=none
-If set to full running "task calendar" will display holidays in the calendar by
+If set to full running "tw calendar" will display holidays in the calendar by
 color-coding the corresponding days. A detailed list with the dates and names
 of the holidays is also shown. If set to sparse only the days are color-coded
 and no details on the holidays will be displayed. The displaying of holidays is
@@ -711,7 +711,7 @@ Determines whether the calendar legend is displayed. The default value is "1".
 
 .TP
 .B calendar.monthsperline=N
-Determines how many months the "task calendar" command renders across the
+Determines how many months the "tw calendar" command renders across the
 screen. Defaults to however many will fit. If more months than will fit are
 specified, Taskwarrior will only show as many that will fit.
 
@@ -739,8 +739,8 @@ When enabled, this setting causes a change log of each task to be displayed by
 the 'info' command. Default value is "1".
 
 .SS HOLIDAYS
-Holidays are entered either directly in the .taskrc file or via an include file
-that is specified in .taskrc. For single-day holidays the name and the date is
+Holidays are entered either directly in the .taskwarriorrc file or via an include file
+that is specified in .taskwarriorrc. For single-day holidays the name and the date is
 required to be given:
 
 .nf
@@ -809,7 +809,7 @@ automatic coloring of that task. A list of valid colors, depending on your
 terminal, can be obtained by running the command:
 
 .RS
-.B task colors
+.B tw colors
 .RE
 
 .RS
@@ -885,7 +885,7 @@ Can be "1" or "0". When "0", disables merging of colors produced by
 different color rules. Use if your color scheme produces unpleasing
 foreground and background combinations.
 
-See the task-color(5) man pages for color details.
+See the tw-color(5) man pages for color details.
 .RE
 
 Certain attributes like tags, projects and keywords can have their own
@@ -1174,14 +1174,14 @@ be the most useful.
 .B
 default.project=foo
 Provides a default project name for the
-.I task add
+.I tw add
 command, if you don't specify one. The default is blank.
 
 .TP
 .B
 default.due=...
 Provides a default due date for the
-.I task add
+.I tw add
 command, if you don't specify one. You can use a date, or a duration value which
 is assumed to be relative to 'now'. The default is blank.
 
@@ -1189,7 +1189,7 @@ is assumed to be relative to 'now'. The default is blank.
 .B
 default.scheduled=...
 Provides a default scheduled date for the
-.I task add
+.I tw add
 command, if you don't specify one. You can use a date, or a duration value which
 is assumed to be relative to 'now'. The default is blank.
 
@@ -1197,7 +1197,7 @@ is assumed to be relative to 'now'. The default is blank.
 .B
 uda.<name>.default=...
 Provides default values for UDA fields when using the
-.I task add
+.I tw add
 command, if you don't specify values. The default is blank.
 
 .TP
@@ -1216,7 +1216,7 @@ specified. This means that by merely typing
 .RE
 
 .nf
-    $ task
+    $ tw
     [task project:foo list]
 
     ID Project Pri Description
@@ -1232,16 +1232,16 @@ corresponding variables for each report. Each report name is used as a
 "command" name. For example
 
 .TP
-.B task overdue
+.B tw overdue
 
 .TP
 .B report.X.description
-The description for report X when running the "task help" command.
+The description for report X when running the "tw help" command.
 
 .TP
 .B report.X.columns
 This is a comma-separated list of columns and formatting specifiers. See the
-command 'task columns' for a full list of options and examples.
+command 'tw columns' for a full list of options and examples.
 
 .TP
 .B report.X.context
@@ -1440,9 +1440,9 @@ Note that the value are sorted
 .SS CONTEXT
 Context setting is a mechanism which allows the user to set a permanent filter,
 thus avoiding the need to specify one filter repeatedly. More details on usage
-can be found in the task(1) man page.
+can be found in the tw(1) man page.
 
-The current context is stored in the .taskrc file, along with definitions for
+The current context is stored in the .taskwarriorrc file, along with definitions for
 all user provided contexts.
 
 .TP
@@ -1488,9 +1488,9 @@ Taskwarrior is distributed under the MIT license. See
 https://www.opensource.org/licenses/mit-license.php for more information.
 
 .SH SEE ALSO
-.BR task(1),
-.BR task-color(5),
-.BR task-sync(5)
+.BR tw(1),
+.BR tw-color(5),
+.BR tw-sync(5)
 
 For more information regarding Taskwarrior, see the following:
 

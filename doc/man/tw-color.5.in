@@ -1,7 +1,7 @@
-.TH task-color 5 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
+.TH tw-color 5 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
 
 .SH NAME
-task-color \- A color tutorial for the Taskwarrior command line todo manager.
+tw-color \- A color tutorial for the Taskwarrior command line todo manager.
 
 .SH AUTOMATIC MONOCHROME
 It should be mentioned that Taskwarrior is aware of whether its output is going
@@ -9,7 +9,7 @@ to a terminal, or to a file or through a pipe.  When Taskwarrior output goes to
 a terminal, color is desirable, but consider the following command:
 
 .nf
-    $ task list > file.txt
+    $ tw list > file.txt
 .fi
 
 Do we really want all those color control codes in the file?  Taskwarrior
@@ -17,7 +17,7 @@ assumes that you do not, and temporarily sets color to 'off' while generating
 the output.  This explains the output from the following command:
 
 .nf
-    $ task show | grep '^color '
+    $ tw show | grep '^color '
     color                        off
 .fi
 
@@ -28,15 +28,15 @@ If you wanted those color codes, you can override this behavior by setting the
 _forcecolor variable to on, like this:
 
 .nf
-    $ task config _forcecolor on
-    $ task config | grep '^color '
+    $ tw config _forcecolor on
+    $ tw config | grep '^color '
     color                        on
 .fi
 
 or by temporarily overriding it like this:
 
 .nf
-    $ task rc._forcecolor=on config | grep '^color '
+    $ tw rc._forcecolor=on config | grep '^color '
     color                        on
 .fi
 
@@ -45,7 +45,7 @@ Taskwarrior has a 'color' command that will show all the colors it is capable of
 displaying.  Try this:
 
 .nf
-    $ task color
+    $ tw color
 .fi
 
 The output cannot be replicated here in a man page, but you should see a set of
@@ -109,7 +109,7 @@ Taskwarrior has a command that helps you visualize these color combinations.
 Try this:
 
 .nf
-    $ task color underline bold red on black
+    $ tw color underline bold red on black
 .fi
 
 You can use this command to see how the various color combinations work.  You
@@ -180,7 +180,7 @@ A soft pink would be addressed as:
 See if you agree, by running:
 
 .nf
-    $ task color black on rgb515
+    $ tw color black on rgb515
 .fi
 
 You may notice that the large color block is represented as 6 squares.  All
@@ -212,11 +212,11 @@ Note also that there is no bold or bright attributes when dealing with 256
 colors, but there is still underline available.
 
 .SH LEGEND
-Taskwarrior will show examples of all defined colors used in your .taskrc, or
+Taskwarrior will show examples of all defined colors used in your .taskwarriorrc, or
 theme, if you run this command:
 
 .nf
-    $ task color legend
+    $ tw color legend
 .fi
 
 This gives you an example of each of the colors, so you can see the effect,
@@ -228,24 +228,24 @@ specify a color, and the conditions under which that color is used.  By example,
 let us add a few tasks:
 
 .nf
-    $ task add project:Home priority:H pay the bills               (1)
-    $ task add project:Home            clean the rug               (2)
-    $ task add project:Garden          clean out the garage        (3)
+    $ tw add project:Home priority:H pay the bills               (1)
+    $ tw add project:Home            clean the rug               (2)
+    $ tw add project:Garden          clean out the garage        (3)
 .fi
 
 We can add a color rule that uses a blue background for all tasks in the Home
 project:
 
 .nf
-    $ task config color.project.Home 'on blue'
+    $ tw config color.project.Home 'on blue'
 .fi
 
 We use quotes around 'on blue' because there are two words, but they represent
-one value in the .taskrc file.  Now suppose we wish to use a bold yellow text
+one value in the .taskwarriorrc file.  Now suppose we wish to use a bold yellow text
 color for all cleaning work:
 
 .nf
-    $ task config color.keyword.clean 'bold yellow'
+    $ tw config color.keyword.clean 'bold yellow'
 .fi
 
 Now what happens to task 2, which belongs to project Home (blue background), and
@@ -282,11 +282,11 @@ There is also 'color.project.none', 'color.tag.none' and
 
 .SH THEMES
 Taskwarrior supports themes.  What this really means is that with the ability to
-include other files into the .taskrc file, different sets of color rules can
+include other files into the .taskwarriorrc file, different sets of color rules can
 be included.
 
 To get a good idea of what a color theme looks like, try adding this entry to
-your .taskrc file:
+your .taskwarriorrc file:
 
 .nf
     include dark-256.theme
@@ -318,7 +318,7 @@ see better results using a dark theme.
 You can also see how the theme will color the various tasks with the command:
 
 .nf
-    $ task color legend
+    $ tw color legend
 .fi
 
 Better yet, create your own, and share it.  We will gladly host the theme file
@@ -331,9 +331,9 @@ Taskwarrior is distributed under the MIT license. See
 https://www.opensource.org/licenses/mit-license.php for more information.
 
 .SH SEE ALSO
-.BR task(1),
-.BR taskrc(5),
-.BR task-sync(5)
+.BR tw(1),
+.BR taskwarriorrc(5),
+.BR tw-sync(5)
 
 For more information regarding Taskwarrior, see the following:
 

@@ -1,12 +1,12 @@
-.TH task 1 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
+.TH tw 1 2016-02-24 "${PACKAGE_STRING}" "User Manuals"
 
 .SH NAME
-task \- A command line todo manager.
+tw \- A command line todo manager.
 
 .SH SYNOPSIS
-.B task <filter> <command> [ <mods> | <args> ]
+.B tw <filter> <command> [ <mods> | <args> ]
 .br
-.B task --version
+.B tw --version
 
 .SH DESCRIPTION
 Taskwarrior is a command line todo list manager. It maintains a list of tasks
@@ -25,14 +25,14 @@ The <filter> consists of zero or more search criteria that select tasks.  For
 example, to list all pending tasks belonging to the 'Home' project:
 
 .nf
-  task project:Home list
+  tw project:Home list
 .fi
 
 You can specify multiple filter terms, each of which further restricts the
 result:
 
 .nf
-  task project:Home +weekend garden list
+  tw project:Home +weekend garden list
 .fi
 
 This example applies three filters: the 'Home' project, the 'weekend' tag, and
@@ -52,7 +52,7 @@ command.  This can be dangerous, and this special case is confirmed, and
 cannot be overridden.  For example, this command:
 
 .nf
-  task modify +work
+  tw modify +work
   This command has no filter, and will modify all tasks.  Are you sure? (yes/no)
 .fi
 
@@ -61,19 +61,19 @@ will add the 'work' tag to all tasks, but only after confirmation.
 More filter examples:
 
 .nf
-  task                                      <command> <mods>
-  task 28                                   <command> <mods>
-  task +weekend                             <command> <mods>
-  task +bills due.by:eom                    <command> <mods>
-  task project:Home due.before:today        <command> <mods>
-  task ebeeab00-ccf8-464b-8b58-f7f2d606edfb <command> <mods>
+  tw                                      <command> <mods>
+  tw 28                                   <command> <mods>
+  tw +weekend                             <command> <mods>
+  tw +bills due.by:eom                    <command> <mods>
+  tw project:Home due.before:today        <command> <mods>
+  tw ebeeab00-ccf8-464b-8b58-f7f2d606edfb <command> <mods>
 .fi
 
 By default filter elements are combined with an implicit 'and' operator,
 but 'or' and 'xor' may also be used, provided parentheses are included:
 
 .nf
-  task '( /[Cc]at|[Dd]og/ or /[0-9]+/ )'      <command> <mods>
+  tw '( /[Cc]at|[Dd]og/ or /[0-9]+/ )'      <command> <mods>
 .fi
 
 The parentheses isolate the logical term from any default command filter or
@@ -84,10 +84,10 @@ multiple tasks use one of these forms (space-separated list of ID numbers,
 UUID numbers or ID ranges):
 
 .nf
-  task 1 2 3                                    delete
-  task 1-3                                      info
-  task 1 2-5 19                                 modify pri:H
-  task 4-7 ebeeab00-ccf8-464b-8b58-f7f2d606edfb info
+  tw 1 2 3                                    delete
+  tw 1-3                                      info
+  tw 1 2-5 19                                 modify pri:H
+  tw 4-7 ebeeab00-ccf8-464b-8b58-f7f2d606edfb info
 .fi
 
 Note that it may be necessary to properly escape special characters as well as
@@ -100,11 +100,11 @@ The <mods> consist of zero or more changes to apply to the selected tasks, such
 as:
 
 .nf
-  task <filter> <command> project:Home
-  task <filter> <command> +weekend +garden due:tomorrow
-  task <filter> <command> Description/annotation text
-  task <filter> <command> /from/to/     <- replace first match
-  task <filter> <command> /from/to/g    <- replace all matches
+  tw <filter> <command> project:Home
+  tw <filter> <command> +weekend +garden due:tomorrow
+  tw <filter> <command> Description/annotation text
+  tw <filter> <command> /from/to/     <- replace first match
+  tw <filter> <command> /from/to/g    <- replace all matches
 .fi
 
 .SH SUBCOMMANDS
@@ -123,50 +123,50 @@ are denoted as such.
 
 Reports are read subcommands. There are several reports currently predefined in
 Taskwarrior. The output and sort behavior of these reports can be configured in
-the configuration file. See also the man page taskrc(5).  There are also other
+the configuration file. See also the man page taskwarriorrc(5).  There are also other
 read subcommands that are not reports.
 
 .TP
-.B task --version
+.B tw --version
 This is the only conventional command line argument that Taskwarrior supports,
 and is intended for add-on scripts to verify the version number of an installed
 Taskwarrior without invoking the mechanisms that create default files.
 
 .TP
-.B task <filter>
+.B tw <filter>
 With no command specified, the default command is run, and the filter applied.
 
 .TP
-.B task <filter> active
+.B tw <filter> active
 Shows all tasks matching the filter that are started but not completed.
 
 .TP
-.B task <filter> all
+.B tw <filter> all
 Shows all tasks matching the filter, including parents of recurring tasks.
 
 .TP
-.B task <filter> blocked
+.B tw <filter> blocked
 Shows all tasks matching the filter, that are currently blocked by other tasks.
 
 .TP
-.B task <filter> blocking
+.B tw <filter> blocking
 Shows all tasks matching the filter, that block other tasks.
 
 .TP
-.B task <filter> burndown.daily
+.B tw <filter> burndown.daily
 Shows a graphical burndown chart, by day. Is affected by the context.
 
 .TP
-.B task <filter> burndown.weekly
+.B tw <filter> burndown.weekly
 Shows a graphical burndown chart, by week.  Note that 'burndown' is an alias to
 the 'burndown.weekly' report. Is affected by the context.
 
 .TP
-.B task <filter> burndown.monthly
+.B tw <filter> burndown.monthly
 Shows a graphical burndown chart, by month. Is affected by the context.
 
 .TP
-.B task calendar [due|<month> <year>|<year>] [y]
+.B tw calendar [due|<month> <year>|<year>] [y]
 Shows a monthly calendar with due tasks marked.  Shows one horizontal line of
 months.  If the 'y' argument is provided, will show at least one complete year.
 If a year is provided, such as '2015', then that full year is shown.  If both
@@ -175,30 +175,30 @@ the specified month and year.  If the 'due' argument is provided, will show
 the starting month of the earliest due task.
 
 .TP
-.B task colors [<sample> | legend]
+.B tw colors [<sample> | legend]
 Displays all possible colors, a named sample, or a legend containing all
 currently defined colors.
 
 .TP
-.B task columns [<substring>]
+.B tw columns [<substring>]
 Displays all supported columns and formatting styles.  Useful when creating
 custom reports.  If a substring is provided, only matching column names are
 shown.
 
 .TP
-.B task commands
+.B tw commands
 Shows all the supported commands, with some details of each.
 
 .TP
-.B task <filter> completed
+.B tw <filter> completed
 Shows all tasks matching the filter that are completed.
 
 .TP
-.B task <filter> count
+.B tw <filter> count
 Displays only a count of tasks matching the filter. Is affected by the context.
 
 .TP
-.B task <filter> export
+.B tw <filter> export
 Exports all tasks in the JSON format.  Redirect the output to a file, if you
 wish to save it, or pipe it to another command or script to convert it to
 another format. You'll find these example scripts online at
@@ -218,70 +218,70 @@ another format. You'll find these example scripts online at
 .fi
 
 .TP
-.B task <filter> ghistory.annual
+.B tw <filter> ghistory.annual
 Shows a graphical report of task status by year.
 
 .TP
-.B task <filter> ghistory.monthly
+.B tw <filter> ghistory.monthly
 Shows a graphical report of task status by month.  Note that 'ghistory' is
 an alias to 'ghistory.monthly'.
 
 .TP
-.B task <filter> ghistory.weekly
+.B tw <filter> ghistory.weekly
 Shows a graphical report of task status by week.
 
 .TP
-.B task <filter> ghistory.daily
+.B tw <filter> ghistory.daily
 Shows a graphical report of task status by day.
 
 .TP
-.B task help
+.B tw help
 Shows the long usage text.
 
 .TP
-.B task <filter> history.annual
-Shows a report of task history by year. Is affected by the context.
+.B tw <filter> history.annual
+Shows a report of tw history by year. Is affected by the context.
 
 .TP
-.B task <filter> history.monthly
-Shows a report of task history by month.  Note that 'history' is
+.B tw <filter> history.monthly
+Shows a report of tw history by month.  Note that 'history' is
 an alias to 'history.monthly'. Is affected by the context.
 
 .TP
-.B task <filter> history.weekly
-Shows a report of task history by week. Is affected by the context.
+.B tw <filter> history.weekly
+Shows a report of tw history by week. Is affected by the context.
 
 .TP
-.B task <filter> history.daily
-Shows a report of task history by day. Is affected by the context.
+.B tw <filter> history.daily
+Shows a report of tw history by day. Is affected by the context.
 
 .TP
-.B task <filter> ids
+.B tw <filter> ids
 Applies the filter then extracts only the task IDs and presents them as
 a space-separated list.  This is useful as input to a task command, to achieve
 this:
 
 .nf
-  task $(task project:Home ids) modify priority:H
+  tw $(task project:Home ids) modify priority:H
 .fi
 
 This example first gets the IDs for the project:Home filter, then sets
 the priority to H for each of those tasks.  This can also be achieved directly:
 
 .nf
-  task project:Home modify priority:H
+  tw project:Home modify priority:H
 .fi
 
 This command is mainly of use to external scripts.
 
 .TP
-.B task <filter> uuids
+.B tw <filter> uuids
 Applies the filter on all tasks (even deleted and completed tasks)
 then extracts only the task UUIDs and presents them as a space-separated list.
 This is useful as input to a task command, to achieve this:
 
 .nf
-  task $(task project:Home status:completed uuids) modify status:pending
+  tw $(task project:Home status:completed uuids) modify status:pending
 .fi
 
 This example first gets the UUIDs for the project:Home and status:completed
@@ -290,121 +290,121 @@ filters, then makes each of those tasks pending again.
 This command is mainly of use to external scripts.
 
 .TP
-.B task udas
+.B tw udas
 Shows a list of UDAs that are defined, including their name, type, label and
 allowed values.  Also shows UDA usage and any orphan UDAs.
 
 .TP
-.B task <filter> information
+.B tw <filter> information
 Shows all data and metadata for the specified tasks.  This is the only means of
 displaying all aspects of a given task, including the change history.
 
 .TP
-.B task <filter> list
+.B tw <filter> list
 Provides a standard listing of tasks matching the filter.
 
 .TP
-.B task <filter> long
+.B tw <filter> long
 Provides the most detailed listing of tasks matching the filter.
 
 .TP
-.B task <filter> ls
+.B tw <filter> ls
 Provides a short listing of tasks matching the filter.
 
 .TP
-.B task <filter> minimal
+.B tw <filter> minimal
 Provides a minimal listing of tasks matching the filter.
 
 .TP
-.B task <filter> newest
+.B tw <filter> newest
 Shows the newest tasks matching the filter.
 
 .TP
-.B task <filter> next
+.B tw <filter> next
 Shows a page of the most urgent tasks, sorted by urgency, which is a calculated
 value.
 
 .TP
-.B task <filter> ready
+.B tw <filter> ready
 Shows a page of the most urgent ready tasks, sorted by urgency with started
 tasks first. A ready task is one that is either unscheduled, or has a scheduled
 date that is past and is not waiting.
 
 .TP
-.B task <filter> oldest
+.B tw <filter> oldest
 Shows the oldest tasks matching the filter.
 
 .TP
-.B task <filter> overdue
+.B tw <filter> overdue
 Shows all incomplete tasks matching the filter that are beyond their due date.
 
 .TP
-.B task <filter> projects
+.B tw <filter> projects
 Lists all project names that are currently used by pending tasks, and the
 number of tasks for each. Is affected by the context.
 
 .TP
-.B task <filter> recurring
+.B tw <filter> recurring
 Shows all recurring tasks matching the filter.
 
 .TP
-.B task <filter> unblocked
+.B tw <filter> unblocked
 Shows all tasks that are not currently blocked by other tasks, matching the
 filter.
 
 .TP
-.B task <filter> waiting
+.B tw <filter> waiting
 Shows all waiting tasks matching the filter.
 
 .SH WRITE SUBCOMMANDS
 
 .TP
-.B task add <mods>
-Adds a new pending task to the task list. It is affected by the currently set
+.B tw add <mods>
+Adds a new pending task to the tw list. It is affected by the currently set
 context.
 
 .TP
-.B task <filter> annotate <mods>
+.B tw <filter> annotate <mods>
 Adds an annotation to an existing task.
 
 .TP
-.B task <filter> append <mods>
+.B tw <filter> append <mods>
 Appends description text to an existing task.
 
 .TP
-.B task <filter> delete <mods>
-Deletes the specified task from task list. Is affected by the context.
+.B tw <filter> delete <mods>
+Deletes the specified task from tw list. Is affected by the context.
 
 .TP
-.B task <filter> denotate <mods>
+.B tw <filter> denotate <mods>
 Deletes an annotation for the specified task. If the provided description
 matches an annotation exactly, the corresponding annotation is deleted. If the
 provided description matches annotations partly, the first partly matched
 annotation is deleted. Is affected by the context.
 
 .TP
-.B task <filter> done <mods>
+.B tw <filter> done <mods>
 Marks the specified task as done. Is affected by the context.
 
 .TP
-.B task <filter> duplicate <mods>
+.B tw <filter> duplicate <mods>
 Duplicates the specified task and allows modifications. Is affected by the context.
 
 .TP
-.B task <filter> edit
+.B tw <filter> edit
 Launches a text editor to let you modify all aspects of a task directly.
 In general, this is not the recommended method of modifying tasks, but is
 provided for exceptional circumstances.  Use carefully. Is affected by the context.
 
 .TP
-.B task import [<file> ...]
+.B tw import [<file> ...]
 Imports tasks in the JSON format.  Can be used to add new tasks, or update
 existing ones.  Tasks are identified by their UUID.
 
 If no file or "-" is specified, import tasks from STDIN.
 
 Setting rc.recurrence.confirmation to an appropriate level is recommended
-if import is to be used in automated workflows.  See taskrc(5).
+if import is to be used in automated workflows.  See taskwarriorrc(5).
 
 For importing other file formats, the standard task release comes with a
 few example scripts, such as:
@@ -415,25 +415,25 @@ few example scripts, such as:
 .fi
 
 .TP
-.B task import-v2
+.B tw import-v2
 Imports tasks from the Taskwarrior v2.x format. This is used when upgrading from
 version 2.x to version 3.x.
 
 .TP
-.B task log <mods>
-Adds a new task that is already completed, to the task list. It is affected by
+.B tw log <mods>
+Adds a new task that is already completed, to the tw list. It is affected by
 the currently set context.
 
 .TP
-.B task <filter> modify <mods>
+.B tw <filter> modify <mods>
 Modifies the existing task with provided information.
 
 .TP
-.B task <filter> prepend <mods>
+.B tw <filter> prepend <mods>
 Prepends description text to an existing task. Is affected by the context.
 
 .TP
-.B task <filter> purge
+.B tw <filter> purge
 Permanently removes the specified tasks from the data files. Only
 tasks that are already deleted can be purged. This command has a
 local-only effect and changes introduced by it are not synced.
@@ -442,11 +442,11 @@ Is affected by the context.
 Warning: causes permanent, non-revertible loss of data.
 
 .TP
-.B task <filter> start <mods>
+.B tw <filter> start <mods>
 Marks the specified tasks as started. Is affected by the context.
 
 .TP
-.B task <filter> stop <mods>
+.B tw <filter> stop <mods>
 Removes the
 .I start
 time from the specified task. Is affected by the context.
@@ -457,98 +457,98 @@ Miscellaneous subcommands either accept no command line arguments, or accept
 non-standard arguments.
 
 .TP
-.B task calc <expression>
+.B tw calc <expression>
 Evaluates an algebraic expression. Can be used to test how Taskwarrior
 parses and evaluates the expression given on the command line.
 
 Examples:
 
 .nf
-    task calc 1 + 1
+    tw calc 1 + 1
     2
 .fi
 
 .nf
-    task calc now + 8d
+    tw calc now + 8d
     2015-03-26T18:06:57
 .fi
 
 .nf
-    task calc eom
+    tw calc eom
     2015-03-31T23:59:59
 .fi
 
 .TP
-.B task config [<name> [<value> | '']]
+.B tw config [<name> [<value> | '']]
 Add, modify and remove settings directly in the Taskwarrior configuration.
 This command either modifies the 'name' setting with a new value of 'value',
 or adds a new entry that is equivalent to 'name=value':
 
 .nf
-    task config name value
+    tw config name value
 .fi
 
 This command sets a blank value.  This has the effect of suppressing any
 default value:
 
 .nf
-    task config name ''
+    tw config name ''
 .fi
 
-Finally, this command removes any 'name=...' entry from the .taskrc file:
+Finally, this command removes any 'name=...' entry from the .taskwarriorrc file:
 
 .nf
-    task config name
+    tw config name
 .fi
 
 .TP
-.B task context <name>
+.B tw context <name>
 Sets the currently active context. See the CONTEXT section.
 
 Example:
 
 .nf
-    task context work
+    tw context work
 .fi
 
 .TP
-.B task context delete <name>
+.B tw context delete <name>
 Deletes the context with the name <name>. If the context being deleted is currently
 set as active, it will be unset.
 
 Example:
 
 .nf
-    task context delete work
+    tw context delete work
 .fi
 
 .TP
-.B task context define <name> <filter>
+.B tw context define <name> <filter>
 Defines a new context with name <name> and definition <filter>. This command
 does not affect the currently set context, just adds a new context definition.
 
 Examples:
 
 .nf
-    task context define work project:Work
-    task context define home project:Home or +home
-    task context define superurgent due:today and +urgent
+    tw context define work project:Work
+    tw context define home project:Home or +home
+    tw context define superurgent due:today and +urgent
 .fi
 
 .TP
-.B task context list
+.B tw context list
 Outputs a list of available contexts along with their definitions.
 
 .TP
-.B task context none
+.B tw context none
 Clears the currently active context, if any was set.
 
 .TP
-.B task context show
+.B tw context show
 Shows the currently active context, along with its definition.
 
 .TP
-.B task diagnostics
+.B tw diagnostics
 Shows diagnostic information, of the kind needed when reporting a problem.
 When you report a bug, it is likely that the platform, version, and environment
 are important.  Running this command generates a summary of similar information
@@ -561,41 +561,41 @@ This command also performs a diagnostic scan of your data looking for common
 problems, such as duplicate UUIDs.
 
 .TP
-.B task execute <external command>
+.B tw execute <external command>
 Executes the specified command.  Not useful by itself, but when used in
 conjunction with aliases and extensions can provide seamless integration.
 
 .TP
-.B task logo
+.B tw logo
 Displays the Taskwarrior logo.
 
 .TP
-.B task news
+.B tw news
 Guides the user through important release notes anytime a new version of
 Taskwarrior is installed. It provides personalized feedback, deprecation
 warnings and usage advice, where applicable.
 
 .TP
-.B task reports
+.B tw reports
 Lists all supported reports.  This includes the built-in reports, and any custom
 reports you have defined.
 
 .TP
-.B task show [all | <substring>]
+.B tw show [all | <substring>]
 Shows all the current settings.  If a
 substring is specified just the settings containing that substring will be
 displayed.
 
 .TP
-.B task <filter> stats
+.B tw <filter> stats
 Shows statistics of the tasks defined by the filter. Is affected by the context.
 
 .TP
-.B task <filter> summary
+.B tw <filter> summary
 Shows a report of aggregated task status by project. Is affected by the context.
 
 .TP
-.B task sync
+.B tw sync
 The sync command synchronizes data with the Taskserver, if configured.
 
 Note: If you use multiple sync clients, make sure this setting (which is the default)
@@ -614,107 +614,107 @@ and on all other clients (this is not the default):
 This is a workaround to avoid a recurrence bug that duplicates recurring tasks.
 
 .TP
-.B task <filter> tags
+.B tw <filter> tags
 Show a list of all tags used. Any special tags used are highlighted. Note that
 virtual tags are not listed - they don't really exist, and are just a convenient
 notation for other task metadata. It is an error to attempt to add or remove a
 virtual tag. Is affected by the context.
 
 .TP
-.B task timesheet [<weeks>]
+.B tw timesheet [<weeks>]
 Shows a weekly report of tasks completed and started.
 
 .TP
-.B task undo
+.B tw undo
 Reverts the most recent action.  Obeys the confirmation setting.
 
 .TP
-.B task version
+.B tw version
 Shows the Taskwarrior version number.
 
 .SH HELPER SUBCOMMANDS
 
 .TP
-.B task _aliases
+.B tw _aliases
 Generates a list of all aliases, for autocompletion purposes.
 
 .TP
-.B task _columns
+.B tw _columns
 Displays only a list of supported columns.
 
 .TP
-.B task _commands
+.B tw _commands
 Generates a list of all commands, for autocompletion purposes.
 
 .TP
-.B task _config
+.B tw _config
 Lists all supported configuration variables, for completion purposes.
 
 .TP
-.B task _context
+.B tw _context
 Lists all available context variables, for completion purposes.
 
 .TP
-.B task <filter> _ids
+.B tw <filter> _ids
 Shows only the IDs of matching tasks, in the form of a list.
 Deprecated in favor of _unique.
 
 .TP
-.B task _show
+.B tw _show
 Shows the combined defaults and overrides of the configuration settings, for use
 by third-party applications.
 
 .TP
-.B task <filter> _unique <attribute>
+.B tw <filter> _unique <attribute>
 Reports a unique set of attribute values. For example, to see all the active
 projects:
 
 .nf
-  task +PENDING _unique project
+  tw +PENDING _unique project
 .fi
 
 .TP
-.B task <filter> _uuids
+.B tw <filter> _uuids
 Shows only the UUIDs of matching tasks among all tasks (even deleted and
 completed tasks), in the form of a list.
 Deprecated in favor of _unique.
 
 .TP
-.B task _udas
+.B tw _udas
 Shows only defined UDA names, in the form of a list.
 
 .TP
-.B task <filter> _projects
+.B tw <filter> _projects
 Shows only a list of all project names used.
 Deprecated in favor of _unique.
 
 .TP
-.B task <filter> _tags
+.B tw <filter> _tags
 Shows only a list of all tags used, for autocompletion purposes.
 Deprecated in favor of _unique.
 
 .TP
-.B task <filter> _urgency
+.B tw <filter> _urgency
 Displays the urgency measure of a task.
 
 .TP
-.B task _version
+.B tw _version
 Shows only the Taskwarrior version number.
 
 .TP
-.B task _zshcommands
+.B tw _zshcommands
 Generates a list of all commands, for zsh autocompletion purposes.
 
 .TP
-.B task <filter> _zshids
+.B tw <filter> _zshids
 Shows the IDs and descriptions of matching tasks.
 
 .TP
-.B task <filter> _zshuuids
+.B tw <filter> _zshuuids
 Shows the UUIDs and descriptions of matching tasks.
 
 .TP
-.B task _get <DOM> [<DOM> ...]
+.B tw _get <DOM> [<DOM> ...]
 Accesses and displays the DOM reference(s).  Used to extract individual values
 from tasks, or the system.  Supported DOM references are:
 
@@ -746,7 +746,7 @@ Additionally, some components of the attributes of particular types may be
 extracted by DOM references.
 
 .nf
-  $ task _get 2.due.year
+  $ tw _get 2.due.year
   2015
 .fi
 
@@ -937,7 +937,7 @@ calculated attributes:
 For example:
 
 .nf
-    task due.before:eom priority.not:L list
+    tw due.before:eom priority.not:L list
 .fi
 
 The
@@ -959,19 +959,19 @@ modifier is the same as 'before', except it also includes the moment in
 question.  For example:
 
 .nf
-    task add test due:eoy
+    tw add test due:eoy
 .fi
 
 will be found when using the inclusive filter 'by':
 
 .nf
-    task due.by:eoy
+    tw due.by:eoy
 .fi
 
 but not when the non-inclusive filter 'before' is used:
 
 .nf
-    task due.before:eoy
+    tw due.before:eoy
 .fi
 
 this applies equally to other named dates such as 'eom', 'eod', etc; the
@@ -982,8 +982,8 @@ The
 modifier requires that the attribute does not have a value.  For example:
 
 .nf
-    task priority:      list
-    task priority.none: list
+    tw priority:      list
+    tw priority.none: list
 .fi
 
 are equivalent, and list tasks that do not have a priority.
@@ -1007,8 +1007,8 @@ The
 modifier is used to search for a substring, such as:
 
 .nf
-    task description.has:foo list
-    task foo                 list
+    tw description.has:foo list
+    tw foo                 list
 .fi
 
 These are equivalent and will return any task that has 'foo' in the description
@@ -1025,15 +1025,15 @@ The
 modifier matches against the left, or beginning of an attribute, such that:
 
 .nf
-    task project.startswith:H list
-    task project:H            list
+    tw project.startswith:H list
+    tw project:H            list
 .fi
 
 are equivalent and will match any project starting with 'H'.  Matching all
 projects not starting with 'H' is done with:
 
 .nf
-    task project.not:H         list
+    tw project.not:H         list
 .fi
 
 The
@@ -1046,7 +1046,7 @@ modifier requires that the attribute contain the whole word specified, such
 that this:
 
 .nf
-    task description.word:foo list
+    tw description.word:foo list
 .fi
 
 Will match the description 'foo bar baz' but does not match 'dog food'.
@@ -1070,9 +1070,9 @@ You can use the following operators in filter expressions:
 For example:
 
 .nf
-  task due.before:eom priority.not:L list
-  task '( due < eom or priority != L )' list
-  task '! ( project:Home or project:Garden )' list
+  tw due.before:eom priority.not:L list
+  tw '( due < eom or priority != L )' list
+  tw '! ( project:Home or project:Garden )' list
 .fi
 
 The
@@ -1098,13 +1098,13 @@ the 'and' operator.  The reason is that some reports contain filters that must
 be combined with the command line.  Consider this example:
 
 .nf
-  task project:Home or project:Garden list
+  tw project:Home or project:Garden list
 .fi
 
 While this looks correct, it is not.  The 'list' report contains a filter of:
 
 .nf
-  task show report.list.filter
+  tw show report.list.filter
 
   Config Variable    Value
   -----------------  --------------
@@ -1114,26 +1114,26 @@ While this looks correct, it is not.  The 'list' report contains a filter of:
 Which means the example is really:
 
 .nf
-  task status:pending project:Home or project:Garden list
+  tw status:pending project:Home or project:Garden list
 .fi
 
 The implied 'and' operator makes it:
 
 .nf
-  task status:pending and project:Home or project:Garden list
+  tw status:pending and project:Home or project:Garden list
 .fi
 
 This is a precedence error - the 'and' and 'or' need to be grouped using
 parentheses, like this:
 
 .nf
-  task status:pending and ( project:Home or project:Garden ) list
+  tw status:pending and ( project:Home or project:Garden ) list
 .fi
 
 The original example therefore must be entered as:
 
 .nf
-  task '( project:Home or project:Garden )' list
+  tw '( project:Home or project:Garden )' list
 .fi
 
 This includes quotes to escape the parentheses, so that the shell doesn't
@@ -1143,11 +1143,11 @@ There is redundancy between operators, attribute modifiers and other syntactic
 sugar.  For example, the following are all equivalent:
 
 .nf
-  task foo                      list
-  task /foo/                    list
-  task description.contains:foo list
-  task description.has:foo      list
-  task 'description ~ foo'      list
+  tw foo                      list
+  tw /foo/                    list
+  tw description.contains:foo list
+  tw description.has:foo      list
+  tw 'description ~ foo'      list
 .fi
 
 .SH SPECIFYING DATES AND FREQUENCIES
@@ -1163,60 +1163,60 @@ configuration variable
 .TP
 Exact specification
 .nf
-  task ... due:7/14/2008
+  tw ... due:7/14/2008
 .fi
 
 .TP
 ISO-8601
 .nf
-  task ... due:2013-03-14T22:30:00Z
+  tw ... due:2013-03-14T22:30:00Z
 .fi
 
 .TP
 Relative wording
 .nf
-  task ... due:now
-  task ... due:today
-  task ... due:yesterday
-  task ... due:tomorrow
+  tw ... due:now
+  tw ... due:today
+  tw ... due:yesterday
+  tw ... due:tomorrow
 .fi
 
 .TP
 Day number with ordinal
 .nf
-  task ... due:23rd
-  task ... due:3wks
-  task ... due:1day
-  task ... due:9hrs
+  tw ... due:23rd
+  tw ... due:3wks
+  tw ... due:1day
+  tw ... due:9hrs
 .fi
 
 .TP
 Start of next (work) week (Monday), calendar week (Sunday or Monday), month, quarter and year
 .nf
-  task ... due:sow
-  task ... due:soww
-  task ... due:socw
-  task ... due:som
-  task ... due:soq
-  task ... due:soy
+  tw ... due:sow
+  tw ... due:soww
+  tw ... due:socw
+  tw ... due:som
+  tw ... due:soq
+  tw ... due:soy
 .fi
 
 .TP
 End of current (work) week (Friday), calendar week (Saturday or Sunday), month, quarter and year
 .nf
-  task ... due:eow
-  task ... due:eoww
-  task ... due:eocw
-  task ... due:eom
-  task ... due:eoq
-  task ... due:eoy
+  tw ... due:eow
+  tw ... due:eoww
+  tw ... due:eocw
+  tw ... due:eom
+  tw ... due:eoq
+  tw ... due:eoy
 .fi
 
 .TP
 At some point or later
 .nf
-  task ... wait:later
-  task ... wait:someday
+  tw ... wait:later
+  tw ... wait:someday
 .fi
 
 This sets the wait date to 12/30/9999.
@@ -1224,20 +1224,20 @@ This sets the wait date to 12/30/9999.
 .TP
 Next occurring weekday
 .nf
-  task ... due:fri
+  tw ... due:fri
 .fi
 
 .TP
 Predictable holidays
 .nf
-  task ... due:goodfriday
-  task ... due:easter
-  task ... due:eastermonday
-  task ... due:ascension
-  task ... due:pentecost
-  task ... due:midsommar
-  task ... due:midsommarafton
-  task ... due:juhannus
+  tw ... due:goodfriday
+  tw ... due:easter
+  tw ... due:eastermonday
+  tw ... due:ascension
+  tw ... due:pentecost
+  tw ... due:midsommar
+  tw ... due:midsommarafton
+  tw ... due:juhannus
 .fi
 .RE
 
@@ -1286,7 +1286,7 @@ Every two years.
 
 .SH CONTEXT
 Context is a user-defined query, which is automatically applied to all commands
-that filter the task list and to commands that create new tasks (add, log). For
+that filter the tw list and to commands that create new tasks (add, log). For
 example, any report command will have its result affected by the current
 active context.  Here is a list of the commands that are affected:
 
@@ -1314,38 +1314,38 @@ active context.  Here is a list of the commands that are affected:
 All other commands are NOT affected by the context.
 
 .nf
-    $ task list
+    $ tw list
     ID Age Project  Description        Urg
     1  2d  Sport    Run 5 miles        1.42
     2  1d  Home     Clean the dishes   1.14
 .fi
 
 .nf
-    $ task context home
-    Context 'home' set. Use 'task context none' to remove.
+    $ tw context home
+    Context 'home' set. Use 'tw context none' to remove.
 .fi
 
 .nf
-    $ task list
+    $ tw list
     ID Age Project  Description        Urg
     2  1d  Home     Clean the dishes   1.14
-    Context 'home' set. Use 'task context none' to remove.
+    Context 'home' set. Use 'tw context none' to remove.
 .fi
 
 Task list got automatically filtered for project:Home.
 
 .nf
-    $ task add Vaccuum the carpet
+    $ tw add Vaccuum the carpet
     Created task 3.
-    Context 'home' set. Use 'task context none' to remove.
+    Context 'home' set. Use 'tw context none' to remove.
 .fi
 
 .nf
-    $ task list
+    $ tw list
     ID Age Project  Description         Urg
     2  1d  Home     Clean the dishes    1.14
     3  5s  Home     Vaccuum the carpet  1.14
-    Context 'home' set. Use 'task context none' to remove.
+    Context 'home' set. Use 'tw context none' to remove.
 .fi
 
 Note that the newly added task "Vaccuum the carpet" has "project:Home" set
@@ -1358,12 +1358,12 @@ new context's name to the 'context' command.
 To unset any context, use the 'none' subcommand.
 
 .nf
-    $ task context none
+    $ tw context none
     Context unset.
 .fi
 
 .nf
-    $ task list
+    $ tw list
     ID Age Project  Description         Urg
     1  2d  Sport    Run 5 miles         1.42
     2  1d  Home     Clean the dishes    1.14
@@ -1374,7 +1374,7 @@ Context can be defined using the 'define' subcommand, specifying both the name
 of the new context, and it's assigned filter.
 
 .nf
-    $ task context define home project:Home
+    $ tw context define home project:Home
     Are you sure you want to add 'context.home.read' with a value of 'project:Home'? (yes/no) yes
     Are you sure you want to add 'context.home.write' with a value of 'project:Home'? (yes/no) yes
     Context 'home' successfully defined.
@@ -1387,7 +1387,7 @@ only for commands that create tasks.
 To remove the definition, use the 'delete' subcommand.
 
 .nf
-    $ task context delete home
+    $ tw context delete home
     Are you sure you want to remove 'context.home.read'? (yes/no) yes
     Are you sure you want to remove 'context.home.write'? (yes/no) yes
     Context 'home' deleted.
@@ -1396,7 +1396,7 @@ To remove the definition, use the 'delete' subcommand.
 To check what is the currently active context, use the 'show' subcommand.
 
 .nf
-    $ task context show
+    $ tw context show
     Context 'home' with
 
     * read filter: '+home'
@@ -1408,7 +1408,7 @@ To check what is the currently active context, use the 'show' subcommand.
 Contexts can store arbitrarily complex filters.
 
 .nf
-    $ task context define family project:Family or +paul or +nancy
+    $ tw context define family project:Family or +paul or +nancy
     Are you sure you want to add 'context.family.read' with a value of 'project:Family or +paul or +nancy'? (yes/no) yes
     Are you sure you want to add 'context.family.write' with a value of 'project:Family or +paul or +nancy'? (yes/no) no
     Context 'family' successfully defined.
@@ -1426,13 +1426,13 @@ filter in the example does not directly translate to a modification. In fact,
 if such a context is used as a writeable context, the following happens:
 
 .nf
-    $ task add Call Paul
+    $ tw add Call Paul
     Created task 4.
-    Context 'family' set. Use 'task context none' to remove.
+    Context 'family' set. Use 'tw context none' to remove.
 .fi
 
 .nf
-    $ task 4 list
+    $ tw 4 list
     ID Age  Project Tags       Description      Urg
      4 9min Family  nancy paul or or Call Paul    0
 .fi
@@ -1445,13 +1445,13 @@ the user intention here, and instead, the user is expected to set the
 "context.<name>.write" variable to make their intention explicit, for example:
 
 .nf
-    $ task config context.family.write project:Family
+    $ tw config context.family.write project:Family
     Are you sure you want to change the value of 'context.family.write' from 'project:Family or +paul or +nancy' to 'project:Family'? (yes/no) yes
-    Config file /home/tbabej/.config/task/taskrc modified.
+    Config file /home/tbabej/.config/taskwarrior/taskwarriorrc modified.
 .fi
 
 .nf
-    $ task context
+    $ tw context
     Name   Type  Definition                        Active
     family read  project:Family or +paul or +nancy yes
            write project:Family                    yes
@@ -1467,7 +1467,7 @@ context, by specifying context.<name>.rc.<parameter>. For example, if the defaul
 command for the family context should be displaying the family_report:
 
 .nf
-    $ task config context.family.rc.default.command family_report
+    $ tw config context.family.rc.default.command family_report
 .fi
 
 .SH COMMAND ABBREVIATION
@@ -1475,19 +1475,19 @@ All Taskwarrior commands may be abbreviated as long as a unique prefix is used,
 for example:
 
 .nf
-  $ task li
+  $ tw li
 .fi
 
 is an unambiguous abbreviation for
 
 .nf
-  $ task list
+  $ tw list
 .fi
 
 but
 
 .nf
-  $ task l
+  $ tw l
 .fi
 
 could be list, ls or long.
@@ -1505,49 +1505,49 @@ meaning of some characters to the shell. This can be done either by adding
 quotes to the description or escaping the special character:
 
 .nf
-  $ task add "quoted ' quote"
-  $ task add escaped \\' quote
+  $ tw add "quoted ' quote"
+  $ tw add escaped \\' quote
 .fi
 
 The argument \-\- (a double dash) tells Taskwarrior to treat all other args
 as description:
 
 .nf
-  $ task add -- project:Home needs scheduling
+  $ tw add -- project:Home needs scheduling
 .fi
 
 In other situations, the shell sees spaces and breaks up arguments.  For
 example, this command:
 
 .nf
-  $ task 123 modify /from this/to that/
+  $ tw 123 modify /from this/to that/
 .fi
 
 is broken up into several arguments, which is corrected with quotes:
 
 .nf
-  $ task 123 modify "/from this/to that/"
+  $ tw 123 modify "/from this/to that/"
 .fi
 
 It is sometimes necessary to force the shell to pass quotes to Taskwarrior
 intact, so you can use:
 
 .nf
-  $ task add project:\\'Three Word Project\\' description
+  $ tw add project:\\'Three Word Project\\' description
 .fi
 
 Taskwarrior supports Unicode using only the UTF8 encoding.
 
 .SH CONFIGURATION FILE AND OVERRIDE OPTIONS
 Taskwarrior stores its configuration in a file in the user's home directory:
-~/.taskrc. The default configuration file can be overridden with:
+~/.taskwarriorrc. The default configuration file can be overridden with:
 
 .TP
-.B task rc:<path-to-alternate-file> ...
+.B tw rc:<path-to-alternate-file> ...
 Specifies an alternate configuration file with highest priority.
 
 .TP
-.B TASKRC=<path-to-alternate-file> task ..
+.B TASKWARRIORRC=<path-to-alternate-file> tw ..
 The environment variable specifies an alternate configuration file to use.
 
 .TP
@@ -1555,12 +1555,12 @@ The environment variable specifies an alternate configuration file to use.
 The environment variable specifies an alternate configuration file to use.
 
 .TP
-.B task rc.<name>:<value> ...
-.B task rc.<name>=<value> ...
+.B tw rc.<name>:<value> ...
+.B tw rc.<name>=<value> ...
 Specifies individual configuration file overrides.
 
 .TP
-.B TASKDATA=/tmp/.task task ...
+.B TASKWARRIORDATA=/tmp/.task tw ...
 The environment variable overrides the default, and the 'data.location'
 configuration setting of the task data directory.
 
@@ -1578,21 +1578,21 @@ this man page.
 .SH FILES
 
 .TP
-~/.taskrc
-User configuration file - see also taskrc(5).  Note that this can be
-overridden on the command line or by the TASKRC environment variable. Also, if
-.I ~/.taskrc
+~/.taskwarriorrc
+User configuration file - see also taskwarriorrc(5).  Note that this can be
+overridden on the command line or by the TASKWARRIORRC environment variable. Also, if
+.I ~/.taskwarriorrc
 doesn't exist and XDG_CONFIG_HOME environment variable is defined, taskwarrior
-will check if $XDG_CONFIG_HOME/task/taskrc exists and attempt to read it
+will check if $XDG_CONFIG_HOME/taskwarrior/taskwarriorrc exists and attempt to read it
 
 .TP
-~/.task
+~/.taskwarrior
 The default directory where task stores its data. The location can be
 configured in the configuration variable 'data.location', or overridden with
-the TASKDATA environment variable.
+the TASKWARRIORDATA environment variable.
 
 .TP
-~/.task/taskchampion.sqlite3
+~/.taskwarrior/taskchampion.sqlite3
 The database file.
 
 .SH "CREDITS & COPYRIGHTS"
@@ -1602,9 +1602,9 @@ Taskwarrior is distributed under the MIT license. See
 https://www.opensource.org/licenses/mit-license.php for more information.
 
 .SH SEE ALSO
-.BR taskrc(5),
-.BR task-color(5),
-.BR task-sync(5)
+.BR taskwarriorrc(5),
+.BR tw-color(5),
+.BR tw-sync(5)
 
 For more information regarding Taskwarrior, see the following:
 
