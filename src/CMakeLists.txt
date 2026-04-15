@@ -62,7 +62,7 @@ if (DARWIN)
     target_link_libraries (lex_executable  "-framework CoreFoundation -framework Security -framework SystemConfiguration")
 endif (DARWIN)
 
-set_property (TARGET task_executable PROPERTY OUTPUT_NAME "task")
+set_property (TARGET task_executable PROPERTY OUTPUT_NAME "tw")
 
 install (TARGETS task_executable DESTINATION ${TASK_BINDIR})
 

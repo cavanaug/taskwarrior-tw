@@ -3,7 +3,7 @@ enable_testing()
 
 set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project (task
+project (tw
   VERSION 3.4.2
   DESCRIPTION "Taskwarrior - a command-line TODO list manager"
   HOMEPAGE_URL https://taskwarrior.org/)
@@ -60,7 +60,7 @@ else (FREEBSD OR DRAGONFLY)
 SET (TASK_MAN1DIR share/man/man1 CACHE STRING "Installation directory for man pages, section 1")
 SET (TASK_MAN5DIR share/man/man5 CACHE STRING "Installation directory for man pages, section 5")
 endif (FREEBSD OR DRAGONFLY)
-SET (TASK_DOCDIR  share/doc/task CACHE STRING "Installation directory for doc files")
+SET (TASK_DOCDIR  share/doc/tw CACHE STRING "Installation directory for doc files")
 SET (TASK_RCDIR "${TASK_DOCDIR}/rc" CACHE STRING "Installation directory for configuration files")
 SET (TASK_BINDIR  bin            CACHE STRING "Installation directory for the binary")
 
@@ -161,6 +161,6 @@ endforeach (doc_FILE)
 
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME ${PACKAGE_NAME}-${PACKAGE_VERSION})
-set (CPACK_SOURCE_IGNORE_FILES  "build" "target" "test" "misc/*" "performance" "swp$" "src/lex$" "task-.*.tar.gz"
+set (CPACK_SOURCE_IGNORE_FILES  "build" "target" "test" "misc/*" "performance" "swp$" "src/lex$" "tw-.*.tar.gz"
                                 "commit.h" "cmake.h$" "\\\\.gitmodules" "src/libshared/\\\\.git" ".github/" ".*\\\\.gitignore$" "docker-compose.yml" "\\\\.git/")
 include (CPack)
