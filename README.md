@@ -8,7 +8,8 @@
 > - Data directory: `~/.task/` → `~/.taskwarrior/`
 >
 > This avoids the collision with the generic `task` name and makes the Taskwarrior identity explicit
-> (`tw` = taskwarrior).
+> (`tw` = taskwarrior). See upstream issue [#3463](https://github.com/GothenburgBitFactory/taskwarrior/issues/3463)
+> for the original discussion of this name conflict.
 
 <div align="center">
 <img src="https://avatars.githubusercontent.com/u/36100920?s=200&u=24da05914c20c4ccfe8485310f7b83049407fa9a&v=4"></br>
