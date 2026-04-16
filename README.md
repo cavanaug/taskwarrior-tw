@@ -1,3 +1,15 @@
+> [!NOTE]
+> **This is a personal fork of [GothenburgBitFactory/taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior).**
+> It contains **no new functionality** — the sole purpose is renaming to achieve coexistence with
+> [go-task](https://taskfile.dev), which also uses the `task` command name. Specifically:
+>
+> - CLI binary: `task` → `tw`
+> - Config file: `~/.taskrc` → `~/.taskwarriorrc`
+> - Data directory: `~/.task/` → `~/.taskwarrior/`
+>
+> This avoids the collision with the generic `task` name and makes the Taskwarrior identity explicit
+> (`tw` = taskwarrior).
+
 <div align="center">
 <img src="https://avatars.githubusercontent.com/u/36100920?s=200&u=24da05914c20c4ccfe8485310f7b83049407fa9a&v=4"></br>
 
